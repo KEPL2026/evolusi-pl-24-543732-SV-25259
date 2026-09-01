@@ -1,0 +1,46 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development
+    container_name: porto-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: porto-backend
+    ports:
+      - "8000:3000"
+    command: npx tsx watch src/index.ts
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: porto123
+      DB_NAME: postgres
+      DB_PORT: 5432
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/node_modules
+    depends_on:
+      - db
+  db:
+    image: postgres:18
+    container_name: postgres-dev
+    environment:
+      POSTGRES_PASSWORD: porto123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:

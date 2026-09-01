@@ -1,0 +1,26 @@
+# Dependencies & Build Outputs
+node_modules
+dist
+build
+.next
+.nuxt
+
+# Environment & Secrets
+.env
+.env.*
+*.local
+*.pem
+*.key
+
+# Version Control & IDEs
+.git
+.gitignore
+.vscode
+.idea
+
+# Logs & Temporary Files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+.DS_Store
