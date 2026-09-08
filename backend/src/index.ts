@@ -1,8 +1,20 @@
 import express, { type Express, type Request, type Response } from "express";
 import pool from "./db";
 import imageRouter from "./image";
+import cors from "cors";
 
 const app: Express = express();
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
+
+app.use(express.json());
 
 app.get("/health", async (req: Request, res: Response) => {
   try {
