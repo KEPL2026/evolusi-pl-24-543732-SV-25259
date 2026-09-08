@@ -22,12 +22,11 @@ services:
       - "8000:3000"
     command: npx tsx watch src/index.ts
     environment:
-      DATABASE_URL: ${DATABASE_URL}
       DB_HOST: db
-      DB_USER: ${POSTGRES_USER}
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_NAME: ${POSTGRES_DB}
-      DB_PORT: ${DB_PORT}
+      DB_USER: postgres
+      DB_PASSWORD: porto123
+      DB_NAME: postgres
+      DB_PORT: 5432
     volumes:
       - ./backend:/var/www/html
       - /var/www/html/node_modules
@@ -37,11 +36,9 @@ services:
     image: postgres:18
     container_name: postgres-dev
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: porto123
     ports:
-      - "${DB_PORT}:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
 
