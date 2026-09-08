@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  uji:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run unit tests
+        run: npm test
+
+  lint:
+    name: JavaScript Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check JavaScript syntax
+        run: node --check math.js
