@@ -1,18 +1,9 @@
 import { test } from "node:test";
-import { assertEquals } from "node:assert";
+import assert from "node:assert";
 import { multiply } from "./math.js";
 
-test("multiply two numbers", () => {
-  const result = multiply(2, 3);
-  assertEquals(result, 6);
-});
-
-test("multiply with zero", () => {
-  const result = multiply(5, 0);
-  assertEquals(result, 0);
-});
-
-test("multiply negative numbers", () => {
-  const result = multiply(-2, -3);
-  assertEquals(result, 6);
+test("multiply function", () => {
+  assert.strictEqual(multiply(2, 3), 6);
+  assert.strictEqual(multiply(-1, 5), -5);
+  assert.strictEqual(multiply(0, 10), 0);
 });
