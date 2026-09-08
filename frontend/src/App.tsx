@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Header from "./components/Header";
 
 function App() {
   const [isSlide, setSlide] = useState(false);
@@ -23,20 +24,13 @@ function App() {
         </button>
       </section>
       <section
-        className={`flex flex-col absolute w-full h-screen bg-gray-950 z-10 transition-all duration-300 ease-in-out p-8 ${isSlide ? "top-0" : "top-full"}`}
+        className={`flex flex-col items-start absolute w-full h-screen bg-gray-950 z-10 transition-all duration-300 ease-in-out py-8 px-16 ${isSlide ? "top-0" : "top-full"}`}
       >
-        <div className="w-full">
-          <button
-            className="bg-gray-900 px-4 py-1 rounded-md text-white text-sm cursor-pointer"
-            onClick={() => {
-              setSlide(false);
-            }}
-          >
-            ←
-          </button>
-        </div>
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <h1 className="text-white">Test Animation</h1>
+        <Header />
+        <div className="flex flex-col">
+          <h2>
+            Recent Work :
+          </h2>
         </div>
       </section>
     </div>
